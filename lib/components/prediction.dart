@@ -1,3 +1,4 @@
+import 'package:cocoa/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -8,44 +9,38 @@ class Prediction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 290,
-      child: SfRadialGauge(
-        enableLoadingAnimation: true,
-        animationDuration: 700,
-        axes: <RadialAxis>[
-          RadialAxis(
-              showLabels: false,
-              showTicks: false,
-              pointers: <GaugePointer>[
-                RangePointer(
-                    value: entry.value,
-                    color: Theme.of(context).colorScheme.primary,
-                    cornerStyle: CornerStyle.bothCurve)
-              ],
-              annotations: <GaugeAnnotation>[
-                GaugeAnnotation(
-                    angle: 90,
-                    widget: Column(mainAxisSize: MainAxisSize.min, children: [
-                      Text(
-                        '${entry.value.toStringAsFixed(0)}%',
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      Text(
-                        entry.key.split("_")[0],
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      Text(
-                        entry.key.split("_")[1],
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: Colors.black.withAlpha(155)),
-                      ),
-                    ])),
-              ])
-        ],
-      ),
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(Constants.padding),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.onInverseSurface,
+            border: Border.all(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.circular(Constants.borderRadius),
+          ),
+          child: Column(
+            children: [
+              Text(
+                entry.key.split("_")[0],
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              Text(
+                entry.key.split("_")[1],
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: Colors.black.withAlpha(155)),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: Constants.distance),
+        Text(
+          'Nilai Kepercayaan Sistem: ${entry.value.toStringAsFixed(0)}%',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ],
     );
   }
 }
