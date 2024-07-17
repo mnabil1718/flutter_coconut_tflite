@@ -45,13 +45,15 @@ dependencies:
   syncfusion_flutter_gauges: ^22.2.7
   flutter_launcher_icons: ^0.13.1
   resource_usage:
-    path: D:/PROGRAMMING/FLUTTER/resource_usage
+    git:
+      url: https://github.com/tingkatin/flutter_resource_usage
+      ref: main # branch name
 
-flutter_launcher_icons:
-  image_path_android: "assets/icon/app_icon.png"
-  image_path_ios: "assets/icon/app_icon.png"
-  android: true
-  ios: true
+# flutter_launcher_icons:
+#   image_path_android: "assets/icon/app_icon.png"
+#   image_path_ios: "assets/icon/app_icon.png"
+#   android: true
+#   ios: true
 
 dev_dependencies:
   flutter_test:

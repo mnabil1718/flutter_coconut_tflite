@@ -14,7 +14,7 @@ class ResultModal extends StatelessWidget {
       width: double.infinity,
       child: ListView(
         scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.all(Constants.padding),
+        padding: const EdgeInsets.symmetric(vertical: Constants.padding),
         shrinkWrap: true,
         children: [
           FutureBuilder(
@@ -43,7 +43,6 @@ class ResultModal extends StatelessWidget {
 
                   // If ERROR
                 } else if (snapshot.hasError) {
-                  print(snapshot.error);
                   return const SizedBox(
                       height: 400, child: Center(child: Text("Error")));
 

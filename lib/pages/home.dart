@@ -1,17 +1,10 @@
 import 'dart:io';
-
 import 'package:cocoa/components/action_button.dart';
-import 'package:cocoa/components/image_preview.dart';
-import 'package:cocoa/components/info_tile.dart';
 import 'package:cocoa/components/result_modal.dart';
 import 'package:cocoa/helpers/constants.dart';
 import 'package:cocoa/helpers/process_result.dart';
 import 'package:cocoa/lib/tflite/image_classification_helper.dart';
-import 'package:cocoa/pages/amelonado_route.dart';
-import 'package:cocoa/pages/angoleta_route.dart';
-import 'package:cocoa/pages/guiana_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:resource_usage/resource_usage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
@@ -138,62 +131,43 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(Constants.padding,
-                  Constants.padding, Constants.padding, Constants.padding - 10),
-              child: Text(
-                "Mulai Mendeteksi",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: Constants.padding),
-              child: ImagePreview(image: imagePreview),
-            ),
-
             const SizedBox(height: Constants.distance),
-
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: Constants.padding),
-              child: Row(
+              child: Column(
                 children: [
-                  Expanded(
-                    flex: 1,
+                  SizedBox(
+                    width: double.infinity,
                     child: ActionButton(
                       icon: const Icon(Icons.camera_alt),
                       text: "Ambil Foto",
                       pickImage: () async => pickImage(PickerSource.camera),
                     ),
                   ),
-                  const SizedBox(width: Constants.distance),
-                  Expanded(
-                    flex: 1,
+                  const SizedBox(height: Constants.distance),
+                  SizedBox(
+                    width: double.infinity,
                     child: ActionButton(
                       icon: const Icon(Icons.photo),
                       text: "Buka Galeri",
                       pickImage: () async => pickImage(PickerSource.gallery),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
-
             const SizedBox(height: Constants.distance),
-
             Container(
               margin:
                   const EdgeInsets.symmetric(horizontal: Constants.distance),
               padding: const EdgeInsets.all(Constants.padding),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(
+                    color: Theme.of(context).colorScheme.onInverseSurface),
                 borderRadius: BorderRadius.circular(Constants.borderRadius),
               ),
               width: double.infinity,
@@ -241,72 +215,7 @@ class _HomeState extends State<Home> {
                 ),
               ]),
             ),
-
             const SizedBox(height: Constants.distance),
-
-            // INFORMASI
-            Padding(
-              padding: const EdgeInsets.fromLTRB(Constants.padding,
-                  Constants.padding, Constants.padding, Constants.padding - 10),
-              child: Text(
-                "Informasi Varietas",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-
-            // HORIZONTAL VIEW
-            SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: Constants.padding),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: <Widget>[
-                  const SizedBox(width: Constants.padding),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AmelonadoRoute()));
-                    },
-                    child: InfoTile(
-                      title: "Varietas Amelonado",
-                      image: Image.asset('assets/images/amelonado.jpg',
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AngoletaRoute()));
-                    },
-                    child: InfoTile(
-                      title: "Varietas Angoleta",
-                      image: Image.asset('assets/images/angoleta.jpg',
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GuianaRoute()));
-                    },
-                    child: InfoTile(
-                      title: "Varietas Guiana",
-                      image: Image.asset('assets/images/guiana.jpg',
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                  const SizedBox(width: Constants.padding),
-                ],
-              ),
-            ),
           ],
         ),
       ),

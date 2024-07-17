@@ -77,10 +77,6 @@ class IsolateInference {
       // Set tensor input [1, 224, 224, 3]
       final input = [imageMatrix];
       // Set tensor output [1, 8]
-      //
-      // ==========WARNING==========
-      // For int quantized model use List<int>
-      // Otherwise use List<double>
       final output = [List<double>.filled(isolateModel.outputShape[1], 0)];
 
       // // Run inference
@@ -99,17 +95,11 @@ class IsolateInference {
       // Get first output tensor
       final result = output.first;
 
-      // ORIGINAL CODE: int maxScore = result.reduce((a, b) => a + b).toInt();
       // Set classification map {label: points}
       var classification = <String, double>{};
       classification["inference_time"] = inferenceTime.toDouble();
       for (var i = 0; i < result.length; i++) {
         classification[isolateModel.labels[i]] = result[i].toDouble();
-        //ORIGINAL CODE: if (result[i] != 0) {
-        //   // Set label: points
-        //   classification[isolateModel.labels[i]] =
-        //       result[i].toDouble() / maxScore.toDouble();
-        // }
       }
 
       isolateModel.responsePort.send(classification);

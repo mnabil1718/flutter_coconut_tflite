@@ -26,10 +26,11 @@ class _ActionButtonState extends State<ActionButton> {
             padding: const EdgeInsets.all(Constants.padding),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(Constants.borderRadius))),
-        child: Column(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             widget.icon,
-            const SizedBox(height: 5),
+            const SizedBox(width: 5),
             Text(widget.text),
           ],
         ));

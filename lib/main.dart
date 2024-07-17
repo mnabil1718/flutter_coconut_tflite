@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final theme = ThemeData(
-  colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.light, seedColor: Colors.teal),
+  colorScheme:
+      ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Colors.blue),
   textTheme: GoogleFonts.latoTextTheme().copyWith(
     displayLarge: GoogleFonts.lato(
       fontWeight: FontWeight.w400,
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cocoadetectinator',
+      title: 'coconutdet',
       theme: theme,
       home: const Home(),
     );

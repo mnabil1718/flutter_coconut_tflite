@@ -12,6 +12,7 @@ class InfoTile extends StatelessWidget {
     return SizedBox(
       width: 250,
       child: Card(
+        elevation: 0,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Constants.borderRadius)),
         child: Column(
